@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Klasifikasi Tweet Banjir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-xl">
+        <h1 class="text-2xl font-bold text-center mb-4">Klasifikasi Tweet Banjir</h1>
+        <form method="post">
+            <textarea name="tweet" rows="3" required class="w-full p-3 border rounded mb-4"
+                placeholder="Masukkan tweet di sini...">{{ tweet or '' }}</textarea>
+            <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full">Klasifikasikan</button>
+        </form>
+        {% if result %}
+        <div
+            class="mt-4 p-4 bg-{{ 'green' if result == 'bencana' else 'yellow' }}-100 border-l-4 border-{{ 'green' if result == 'bencana' else 'yellow' }}-500">
+            <p class="font-semibold">Hasil:</p>
+            <p class="text-lg">{{ result | upper }}</p>
+            <p class="text-sm text-gray-600">Probabilitas: {{ confidence }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
